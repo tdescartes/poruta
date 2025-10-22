@@ -57,6 +57,29 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        poruta: {
+          green: "hsl(var(--poruta-green))",
+          "green-light": "hsl(var(--poruta-green-light))",
+          orange: "hsl(var(--poruta-orange))",
+          "orange-dark": "hsl(var(--poruta-orange-dark))",
+          blue: "hsl(var(--poruta-blue))",
+        },
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
+      backgroundImage: {
+        "gradient-hero": "var(--gradient-hero)",
+        "gradient-accent": "var(--gradient-accent)",
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+      },
+      transitionProperty: {
+        smooth: "var(--transition-smooth)",
+        fast: "var(--transition-fast)",
       },
       borderRadius: {
         lg: "var(--radius)",
