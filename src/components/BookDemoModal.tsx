@@ -61,13 +61,13 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
       // Submit to Google Forms
       const formBody = new URLSearchParams();
       formBody.append('entry.2139731301', formData.name);
-      formBody.append('emailAddress', formData.email);
+      formBody.append('entry.248402731', formData.email);
       if (formData.company) formBody.append('entry.2032801250', formData.company);
       if (formData.phone) formBody.append('entry.465060579', formData.phone);
       if (formData.message) formBody.append('entry.1912247739', formData.message);
 
       await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLSdPPYSsIe6_U8ihWJqBJVI85buydCDxLB1ecYFD5Z_b5_TyZgbs/formResponse',
+        'https://docs.google.com/forms/d/e/1FAIpQLSeoqix_OL9Jg5FZBoz_12B2NzxygVGcjODEcMjxL3nF64l7lw/formResponse',
         {
           method: 'POST',
           body: formBody,

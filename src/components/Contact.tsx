@@ -44,13 +44,13 @@ const Contact = () => {
       // Submit to Google Forms
       const formBody = new URLSearchParams();
       formBody.append('entry.89711842', formData.name);
-      formBody.append('emailAddress', formData.email);
+      formBody.append('entry.432833327', formData.email);
       if (formData.company) formBody.append('entry.666677065', formData.company);
       if (formData.phone) formBody.append('entry.974077450', formData.phone);
       if (formData.message) formBody.append('entry.65402589', formData.message);
 
       await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLSfJLn6LwD3U1f1y-jDcP3JoF0GLW9zIEc_5wzTAfjXocY/formResponse',
+        'https://docs.google.com/forms/d/e/1FAIpQLSci4iYnLMagsWzDEsWcqaN5Pxp6vrXg4kBbAxuauauHrZqi7g/formResponse',
         {
           method: 'POST',
           body: formBody,
