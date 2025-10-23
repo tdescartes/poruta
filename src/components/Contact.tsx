@@ -41,7 +41,24 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Submit to MongoDB via edge function
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-contact`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit');
+      }
 
       toast({
         title: "Message sent!",
@@ -56,9 +73,10 @@ const Contact = () => {
         message: "",
       });
     } catch (error) {
+      console.error('Contact submission error:', error);
       toast({
         title: "Something went wrong",
-        description: "Please try again or email us directly",
+        description: error instanceof Error ? error.message : "Please try again or email us directly",
         variant: "destructive",
       });
     } finally {
@@ -153,10 +171,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Email</h4>
                     <a
-                      href="mailto:hello@poruta.com"
+                      href="mailto:sales@poruta.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      hello@poruta.com
+                      sales@poruta.com
                     </a>
                   </div>
                 </div>
@@ -168,10 +186,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Phone</h4>
                     <a
-                      href="tel:+254700000000"
+                      href="tel:+250787567656"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +254 700 000 000
+                      +250 787 567 656
                     </a>
                   </div>
                 </div>
@@ -183,7 +201,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Location</h4>
                     <p className="text-muted-foreground">
-                      Nairobi, Kenya
+                      Kigali, Rwanda
                       <br />
                       Serving businesses across Africa
                     </p>

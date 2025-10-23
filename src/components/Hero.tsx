@@ -17,7 +17,7 @@ const Hero = () => {
             AI-Powered Procurement for Africa's Trade
           </h1>
           <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
-            Automate documentation, ensure accuracy, and unlock insights—even offline.
+            Revolutionize Procurement and Import Processes in Africa with Poruta AI
           </p>
           <div className="flex flex-col sm:flex-row gap-6">
             <BookDemoModal 

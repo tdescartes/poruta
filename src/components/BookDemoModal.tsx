@@ -58,8 +58,24 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
     }
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Submit to MongoDB via edge function
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-demo`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit');
+      }
 
       toast({
         title: "Demo Booked!",
@@ -69,9 +85,10 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
       setFormData({ name: "", email: "", company: "", phone: "", message: "" });
       setOpen(false);
     } catch (error) {
+      console.error('Demo submission error:', error);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
