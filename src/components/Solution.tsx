@@ -24,20 +24,17 @@ const Solution = () => {
               How Poruta Solves It
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Poruta, hosted at <span className="text-primary font-semibold">poruta.com</span>,
-              leverages AI to automate procurement workflows and import documentation, achieving{" "}
+              AI-powered automation delivering{" "}
               <span className="font-semibold text-secondary">5x faster processing</span> and{" "}
-              <span className="font-semibold text-secondary">99% accuracy</span>.
+              <span className="font-semibold text-secondary">99% accuracy</span>. Built for Africa's growing trade ecosystem.
             </p>
             <ul className="space-y-4">
               {[
-                "Real-time analytics for data-driven decisions",
-                "Offline operation in low-resource areas",
-                "Transparent processes to combat corruption",
-                "Built for AfCFTA's growing intra-continental trade",
-                "Empowers SMEs to compete globally",
+                "Real-time predictive analytics",
+                "Works offline in low-resource areas",
+                "Blockchain transparency",
               ].map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
+                <li key={index} className="flex items-start gap-3 hover:translate-x-2 transition-transform">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                   <span className="text-foreground">{item}</span>
                 </li>

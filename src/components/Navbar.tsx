@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
+import BookDemoModal from "@/components/BookDemoModal";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,11 +17,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Features", href: "#features" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+  const navLinks = isHomePage ? [
+    { name: "Home", href: "#home", type: "anchor" },
+    { name: "Features", href: "#features", type: "anchor" },
+    { name: "About", href: "#about", type: "anchor" },
+    { name: "Contact", href: "#contact", type: "anchor" },
+  ] : [
+    { name: "Home", href: "/", type: "route" },
+    { name: "Features", href: "/features", type: "route" },
+    { name: "About", href: "/about", type: "route" },
+    { name: "Pricing", href: "/pricing", type: "route" },
   ];
 
   return (
@@ -30,28 +38,32 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <a href="https://poruta.com" className="text-2xl font-bold text-primary">
+            <Link to="/" className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity">
               Poruta
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-foreground hover:text-primary transition-colors duration-200"
-              >
-                {link.name}
-              </a>
-            ))}
-            <Button
-              variant="default"
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
-              asChild
-            >
-              <a href="https://poruta.com/signup">Sign Up</a>
-            </Button>
+            {navLinks.map((link) => 
+              link.type === "anchor" ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative text-foreground hover:text-primary transition-colors duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="relative text-foreground hover:text-primary transition-colors duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
+            <BookDemoModal className="hover:scale-105 transition-transform" />
           </div>
 
           <div className="md:hidden">
@@ -69,23 +81,30 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-card shadow-lg animate-fade-in">
           <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block py-2 text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <Button
-              variant="default"
-              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground mt-2"
-              asChild
-            >
-              <a href="https://poruta.com/signup">Sign Up</a>
-            </Button>
+            {navLinks.map((link) => 
+              link.type === "anchor" ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
+            <div onClick={() => setIsMobileMenuOpen(false)}>
+              <BookDemoModal className="w-full mt-2" />
+            </div>
           </div>
         </div>
       )}

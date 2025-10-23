@@ -5,67 +5,74 @@ const features = [
   {
     icon: Bot,
     title: "AI-Powered Automation",
+    tagline: "80% reduction in manual entry",
     description:
-      "Instantly scan and process import documents using OCR and NLP, reducing manual entry by 80%. Supports multilingual documents (English, French, Swahili, Arabic, Amharic) for diverse African markets.",
+      "Instantly scan import documents with OCR and NLP. Supports English, French, Swahili, Arabic, and Amharic.",
   },
   {
     icon: BarChart3,
     title: "Advanced Analytics",
+    tagline: "Unlock AfCFTA's $3.4T market",
     description:
-      "Unlock market intelligence with predictive insights. Track supply chain trends and optimize sourcing in AfCFTA's $3.4 trillion market, critical for SMEs and traders.",
+      "Predictive insights track supply chain trends and optimize sourcing for SMEs and traders.",
   },
   {
     icon: Smartphone,
     title: "Low-Resource Optimization",
+    tagline: "Works offline on basic devices",
     description:
-      "Operates on basic Android devices with offline mode, ideal for remote regions where 35% of Sub-Saharan Africa lacks 4G. Syncs data when connectivity is restored.",
+      "Operates on budget Android phones with offline mode. Syncs when connectivity is restored.",
   },
   {
     icon: Lock,
     title: "Transparency Tools",
+    tagline: "Blockchain audit trails",
     description:
-      "Blockchain-integrated audit trails ensure transparency, reducing fraud risks in procurement (20% of African public contracts face corruption).",
+      "Ensures transparency and reduces fraud risks in public procurement contracts.",
   },
   {
     icon: Tag,
     title: "Custom Codification",
+    tagline: "70% faster HS code classification",
     description:
-      "Automates HS code classification for exports/imports, compliant with EU, COMESA, ECOWAS, and EAC standards. Cuts codification time by 70%, streamlining cross-border trade.",
+      "Automates export/import codes compliant with EU, COMESA, ECOWAS, and EAC standards.",
   },
   {
     icon: Globe,
     title: "Sustainability Tracking",
+    tagline: "Monitor environmental impact",
     description:
-      "AI-driven tools for green procurement, monitoring environmental impact and compliance to overcome resource constraints.",
+      "AI-driven green procurement tools for compliance and resource optimization.",
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="py-20 bg-muted/30">
+    <section id="features" className="py-12 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Key Features of Poruta
+            Key Features
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Powerful tools designed specifically for African businesses to overcome procurement
-            challenges
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="p-6 hover:shadow-lg transition-all duration-300 animate-slide-up border-border hover:border-primary/50"
+              className="group relative p-6 transition-all duration-300 border-border hover:border-primary/50 hover:shadow-[0_0_30px_rgba(0,128,0,0.2)] overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 rounded-lg bg-gradient-hero flex items-center justify-center mb-4">
+              <div className="w-14 h-14 rounded-lg bg-gradient-hero flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
                 <feature.icon className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
+              <p className="text-sm text-primary font-medium mb-3">{feature.tagline}</p>
+              <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-40">
+                <p className="text-muted-foreground text-sm leading-relaxed pt-2 border-t border-border/50">
+                  {feature.description}
+                </p>
+              </div>
             </Card>
           ))}
         </div>
