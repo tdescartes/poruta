@@ -62,9 +62,9 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
       const formBody = new URLSearchParams();
       formBody.append('entry.2139731301', formData.name);
       formBody.append('emailAddress', formData.email);
-      if (formData.company) formBody.append('entry.COMPANY_ID', formData.company);
-      if (formData.phone) formBody.append('entry.PHONE_ID', formData.phone);
-      if (formData.message) formBody.append('entry.MESSAGE_ID', formData.message);
+      if (formData.company) formBody.append('entry.2032801250', formData.company);
+      if (formData.phone) formBody.append('entry.465060579', formData.phone);
+      if (formData.message) formBody.append('entry.1912247739', formData.message);
 
       await fetch(
         'https://docs.google.com/forms/d/e/1FAIpQLSdPPYSsIe6_U8ihWJqBJVI85buydCDxLB1ecYFD5Z_b5_TyZgbs/formResponse',
