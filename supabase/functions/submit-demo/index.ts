@@ -1,5 +1,3 @@
-import { MongoClient } from "https://deno.land/x/mongo@v0.32.0/mod.ts";
-
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
@@ -31,48 +29,57 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Connect to MongoDB
-    const mongoUri = Deno.env.get('MONGODB_URI');
-    if (!mongoUri) {
-      console.error('MONGODB_URI not configured');
+    // Get MongoDB Data API credentials
+    const dataApiUrl = Deno.env.get('MONGODB_DATA_API_URL');
+    const dataApiKey = Deno.env.get('MONGODB_DATA_API_KEY');
+    
+    if (!dataApiUrl || !dataApiKey) {
+      console.error('MongoDB Data API not configured');
       return new Response(
         JSON.stringify({ error: 'Database connection not configured' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    const client = new MongoClient();
-    
-    try {
-      await client.connect(mongoUri);
-      console.log('Connected to MongoDB');
-      
-      const database = client.database('Poruta');
-      const collection = database.collection('Demo');
-      
-      // Insert demo submission
-      const result = await collection.insertOne({
-        name,
-        email,
-        company: company || null,
-        phone: phone || null,
-        message: message || null,
-        createdAt: new Date(),
-      });
-      
-      console.log('Demo submission inserted:', result.insertedId);
-      
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: 'Demo booking submitted successfully',
-          id: result.insertedId 
-        }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    } finally {
-      await client.close();
+    // Insert via MongoDB Data API
+    const response = await fetch(`${dataApiUrl}/action/insertOne`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': dataApiKey,
+      },
+      body: JSON.stringify({
+        dataSource: 'Cluster0',
+        database: 'Poruta',
+        collection: 'Demo',
+        document: {
+          name,
+          email,
+          company: company || null,
+          phone: phone || null,
+          message: message || null,
+          createdAt: new Date().toISOString(),
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('MongoDB Data API error:', errorData);
+      throw new Error(`MongoDB Data API returned ${response.status}`);
     }
+
+    const result = await response.json();
+    console.log('Demo submission inserted:', result.insertedId);
+    
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'Demo booking submitted successfully',
+        id: result.insertedId 
+      }),
+      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   } catch (error) {
     console.error('Error in submit-demo:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
