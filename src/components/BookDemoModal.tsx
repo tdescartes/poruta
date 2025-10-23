@@ -58,24 +58,22 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
     }
 
     try {
-      // Submit to MongoDB via edge function
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-demo`,
+      // Submit to Google Forms
+      const formBody = new URLSearchParams();
+      formBody.append('entry.2139731301', formData.name);
+      formBody.append('emailAddress', formData.email);
+      if (formData.company) formBody.append('entry.COMPANY_ID', formData.company);
+      if (formData.phone) formBody.append('entry.PHONE_ID', formData.phone);
+      if (formData.message) formBody.append('entry.MESSAGE_ID', formData.message);
+
+      await fetch(
+        'https://docs.google.com/forms/d/e/1FAIpQLSdPPYSsIe6_U8ihWJqBJVI85buydCDxLB1ecYFD5Z_b5_TyZgbs/formResponse',
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          },
-          body: JSON.stringify(formData),
+          body: formBody,
+          mode: 'no-cors', // Required for Google Forms
         }
       );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit');
-      }
 
       toast({
         title: "Demo Booked!",
