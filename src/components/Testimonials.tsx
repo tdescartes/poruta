@@ -40,10 +40,10 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
             What Our Users Say About Poruta
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -52,17 +52,17 @@ const Testimonials = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 md:p-12 relative overflow-hidden border-border">
-            <Quote className="absolute top-4 right-4 w-16 h-16 text-muted opacity-20" />
+          <Card className="p-8 md:p-12 relative overflow-hidden border-0 shadow-sm bg-white">
+            <Quote className="absolute top-4 right-4 w-16 h-16 text-foreground/5" />
             
             <div className="relative z-10 animate-fade-in" key={currentIndex}>
-              <blockquote className="text-xl md:text-2xl text-foreground mb-6 leading-relaxed">
+              <blockquote className="text-xl md:text-2xl text-foreground mb-6 leading-relaxed font-medium">
                 "{testimonials[currentIndex].quote}"
               </blockquote>
               
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-semibold text-lg">
+                <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                  <span className="text-foreground font-semibold text-lg">
                     {testimonials[currentIndex].initials}
                   </span>
                 </div>
@@ -84,7 +84,7 @@ const Testimonials = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? "bg-secondary w-8" : "bg-muted"
+                  index === currentIndex ? "bg-primary w-8" : "bg-muted"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />

@@ -9,11 +9,11 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
               Why Choose Poruta
             </h2>
           </div>

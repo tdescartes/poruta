@@ -2,7 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 
 const Solution = () => {
   return (
-    <section id="about" className="py-16 bg-background">
+    <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -20,13 +20,13 @@ const Solution = () => {
           </div>
 
           <div className="animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-6">
               How Poruta Solves It
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               AI-powered automation delivering{" "}
-              <span className="font-semibold text-secondary">5x faster processing</span> and{" "}
-              <span className="font-semibold text-secondary">99% accuracy</span>. Built for Africa's growing trade ecosystem.
+              <span className="font-bold text-foreground">5x faster processing</span> and{" "}
+              <span className="font-bold text-foreground">99% accuracy</span>. Built for Africa's growing trade ecosystem.
             </p>
             <ul className="space-y-4">
               {[

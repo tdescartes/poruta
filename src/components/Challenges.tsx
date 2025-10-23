@@ -41,15 +41,15 @@ const Challenges = () => {
   };
 
   return (
-    <section id="challenges" className="py-16 bg-muted/30">
+    <section id="challenges" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
             Procurement Challenges in Africa
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {challenges.map((challenge, index) => (
             <div
               key={index}
@@ -61,11 +61,11 @@ const Challenges = () => {
                 flippedCard === index ? "rotate-y-180" : "group-hover:rotate-y-180"
               }`}>
                 {/* Front of card */}
-                <Card className="absolute inset-0 p-6 backface-hidden border-border hover:border-primary/50 transition-colors">
+                <Card className="absolute inset-0 p-6 backface-hidden border-0 hover:border-primary/30 hover:shadow-lg transition-all bg-white">
                   <div className="w-14 h-14 rounded-lg bg-secondary flex items-center justify-center mb-4">
                     <challenge.icon className="w-7 h-7 text-secondary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{challenge.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{challenge.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{challenge.summary}</p>
                   <p className="text-xs text-muted-foreground/60 mt-4 lg:hidden">Tap for details</p>
                 </Card>

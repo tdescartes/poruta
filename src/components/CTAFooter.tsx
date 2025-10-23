@@ -10,15 +10,12 @@ const CTAFooter = () => {
       {/* CTA Section */}
       <div className="border-t-2 border-primary/20 bg-secondary/95 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl font-extrabold mb-8">
             Ready to Transform Your Procurement?
           </h2>
-          <p className="text-secondary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
-            Join 500+ African businesses using Poruta to streamline their operations
-          </p>
           <BookDemoModal 
             size="lg"
-            className="text-lg px-8 py-6 transition-transform hover:scale-105 hover:shadow-xl"
+            className="text-lg px-6 py-6 rounded-sm transition-transform hover:scale-105 hover:shadow-xl"
           />
         </div>
       </div>
