@@ -32,13 +32,19 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card shadow-md" : "bg-transparent"
+        isScrolled ? "bg-card shadow-md" : "backdrop-blur-sm bg-black/10"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity">
+            <Link 
+              to="/" 
+              className={`text-2xl font-bold hover:opacity-80 transition-opacity ${
+                isScrolled ? "text-primary" : "text-white"
+              }`}
+              style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
+            >
               Poruta
             </Link>
           </div>
@@ -49,7 +55,12 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="relative text-foreground hover:text-primary transition-colors duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                  className={`relative transition-all duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:tracking-wide ${
+                    isScrolled 
+                      ? "text-foreground hover:text-primary" 
+                      : "text-white hover:text-white/90"
+                  }`}
+                  style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
                 >
                   {link.name}
                 </a>
@@ -57,7 +68,12 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="relative text-foreground hover:text-primary transition-colors duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                  className={`relative transition-all duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:tracking-wide ${
+                    isScrolled 
+                      ? "text-foreground hover:text-primary" 
+                      : "text-white hover:text-white/90"
+                  }`}
+                  style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
                 >
                   {link.name}
                 </Link>
@@ -69,8 +85,11 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-foreground hover:text-primary transition-colors"
+              className={`transition-colors ${
+                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/90"
+              }`}
               aria-label="Toggle menu"
+              style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

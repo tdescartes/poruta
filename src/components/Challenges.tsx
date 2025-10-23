@@ -34,7 +34,7 @@ const challenges = [
 
 const Challenges = () => {
   return (
-    <section id="challenges" className="py-12 bg-background">
+    <section id="challenges" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -46,7 +46,7 @@ const Challenges = () => {
           {challenges.map((challenge, index) => (
             <div
               key={index}
-              className="group perspective-1000"
+              className="group perspective-1000 min-h-[280px]"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative preserve-3d transition-transform duration-700 group-hover:rotate-y-180">

@@ -48,7 +48,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="py-12 bg-muted/30">
+    <section id="features" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -60,7 +60,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="group relative p-6 transition-all duration-300 border-border hover:border-primary/50 hover:shadow-[0_0_30px_rgba(0,128,0,0.2)] overflow-hidden"
+              className="group relative p-6 transition-all duration-300 border-border hover:border-primary/50 hover:shadow-[0_0_30px_rgba(0,128,0,0.2)] hover:-translate-y-1 overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="w-14 h-14 rounded-lg bg-gradient-hero flex items-center justify-center mb-4 transition-transform group-hover:scale-110">

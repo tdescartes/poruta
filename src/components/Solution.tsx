@@ -2,7 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 
 const Solution = () => {
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">

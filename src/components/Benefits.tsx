@@ -9,7 +9,7 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section className="py-12 bg-background">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10 animate-fade-in">
@@ -22,7 +22,7 @@ const Benefits = () => {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-all animate-fade-in hover:scale-105"
+                className="group flex items-start gap-4 p-4 rounded-lg hover:bg-muted/50 transition-all animate-fade-in hover:scale-105 border-l-4 border-transparent hover:border-primary"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex-shrink-0 mt-1 transition-transform group-hover:scale-110">

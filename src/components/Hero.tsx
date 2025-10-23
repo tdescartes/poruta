@@ -31,8 +31,8 @@ const Hero = () => {
               Learn More
             </a>
           </div>
-          <p className="text-sm text-white/80 italic mt-6">
-            Built for Africa's Future
+          <p className="text-base text-white/90 font-medium mt-6">
+            Faster, Transparent, and Efficient – Built for Africa's Future.
           </p>
         </div>
       </div>
