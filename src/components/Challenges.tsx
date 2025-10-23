@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AlertTriangle, TrendingDown, Clock, Leaf } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
@@ -33,6 +34,12 @@ const challenges = [
 ];
 
 const Challenges = () => {
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
+
+  const handleCardClick = (index: number) => {
+    setFlippedCard(flippedCard === index ? null : index);
+  };
+
   return (
     <section id="challenges" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,10 +53,13 @@ const Challenges = () => {
           {challenges.map((challenge, index) => (
             <div
               key={index}
-              className="group perspective-1000 min-h-[280px]"
+              className="group perspective-1000 min-h-[280px] overflow-hidden cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => handleCardClick(index)}
             >
-              <div className="relative preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
+              <div className={`relative h-full preserve-3d transition-transform duration-700 ${
+                flippedCard === index ? "rotate-y-180" : "group-hover:rotate-y-180"
+              }`}>
                 {/* Front of card */}
                 <Card className="absolute inset-0 p-6 backface-hidden border-border hover:border-primary/50 transition-colors">
                   <div className="w-14 h-14 rounded-lg bg-secondary flex items-center justify-center mb-4">
@@ -57,7 +67,7 @@ const Challenges = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-3">{challenge.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{challenge.summary}</p>
-                  <p className="text-xs text-muted-foreground/60 mt-4 md:hidden">Tap for details</p>
+                  <p className="text-xs text-muted-foreground/60 mt-4 lg:hidden">Tap for details</p>
                 </Card>
 
                 {/* Back of card */}

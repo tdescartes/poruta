@@ -5,6 +5,7 @@ import Solution from "@/components/Solution";
 import Features from "@/components/Features";
 import Benefits from "@/components/Benefits";
 import Testimonials from "@/components/Testimonials";
+import Contact from "@/components/Contact";
 import CTAFooter from "@/components/CTAFooter";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <Features />
       <Benefits />
       <Testimonials />
+      <Contact />
       <CTAFooter />
     </div>
   );

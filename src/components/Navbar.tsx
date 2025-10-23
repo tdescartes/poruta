@@ -40,10 +40,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link 
               to="/" 
-              className={`text-2xl font-bold hover:opacity-80 transition-opacity ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
-              style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
+              className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
             >
               Poruta
             </Link>
