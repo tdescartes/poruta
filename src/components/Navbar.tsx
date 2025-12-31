@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import BookDemoModal from "@/components/BookDemoModal";
+import porutaLogo from "@/assets/poruta-logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,9 +41,13 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link 
               to="/" 
-              className="text-xl font-bold text-primary hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity"
             >
-              Poruta
+              <img 
+                src={porutaLogo} 
+                alt="Poruta" 
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
 
