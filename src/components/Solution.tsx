@@ -20,19 +20,22 @@ const Solution = () => {
           </div>
 
           <div className="animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-6">
-              How Poruta Solves It
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
+              Our Solution: The AI-Powered Control Tower
             </h2>
+            <p className="text-primary font-semibold mb-4">
+              Intelligent Automation Meets Expert Validation
+            </p>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              AI-powered automation delivering{" "}
-              <span className="font-bold text-foreground">5x faster processing</span> and{" "}
-              <span className="font-bold text-foreground">99% accuracy</span>. Built for Africa's growing trade ecosystem.
+              We introduce an AI-Automated Procurement Control Tower with Human-in-the-Loop oversight. 
+              This integrated platform connects all stakeholders on a single, transparent, and intelligent system.
             </p>
             <ul className="space-y-4">
               {[
-                "Real-time predictive analytics",
-                "Works offline in low-resource areas",
-                "Blockchain transparency",
+                "AI handles tedious tasks; humans focus on strategic oversight",
+                "Real-time tracking and visibility for all parties",
+                "Unified data ecosystem breaking down silos",
+                "Advanced analytics for strategic decision-making",
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3 hover:translate-x-2 transition-transform">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-1" />

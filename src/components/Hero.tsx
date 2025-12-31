@@ -14,10 +14,10 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
         <div className="max-w-3xl animate-fade-in">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight">
-            AI-Powered Procurement for Africa's Trade
+            Poruta: The AI-Powered Procurement Control Tower
           </h1>
           <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
-            Revolutionize Procurement and Import Processes in Africa with Poruta AI
+            Faster, Accurate, Transparent, and Compliant Cross-Border Trade
           </p>
           <div className="flex flex-col sm:flex-row gap-6">
             <BookDemoModal 
@@ -32,7 +32,7 @@ const Hero = () => {
             </a>
           </div>
           <p className="text-sm text-white/70 font-medium mt-6">
-            Faster, Transparent, and Efficient – Built for Africa's Future.
+            Intelligent Automation Meets Expert Validation – Built for Africa's Future.
           </p>
         </div>
       </div>
