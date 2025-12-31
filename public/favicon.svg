@@ -1,10 +1,9 @@
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" fill="transparent"/>
-  <text x="50%" y="50%" 
-        font-family="Inter, sans-serif" 
-        font-size="32" 
-        font-weight="bold" 
-        fill="#10b981" 
-        text-anchor="middle" 
-        dominant-baseline="central">PT</text>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" fill="#1B3A1B"/>
+  <!-- Open square frame with gap at bottom-left corner -->
+  <!-- Top line, right line, half bottom line -->
+  <path d="M 4 4 L 28 4 L 28 28 L 16 28" stroke="#7FD68A" stroke-width="1.5" fill="none" stroke-linecap="square"/>
+  <!-- Half left line -->
+  <path d="M 4 4 L 4 16" stroke="#7FD68A" stroke-width="1.5" fill="none" stroke-linecap="square"/>
+  <text x="16" y="23" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#7FD68A" text-anchor="middle">P</text>
 </svg>
