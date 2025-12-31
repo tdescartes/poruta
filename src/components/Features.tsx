@@ -4,45 +4,45 @@ import { Card } from "@/components/ui/card";
 const features = [
   {
     icon: Bot,
-    title: "AI-Powered Automation",
-    tagline: "80% reduction in manual entry",
+    title: "AI-Driven Process Automation",
+    tagline: "Beyond digitizing forms",
     description:
-      "Instantly scan import documents with OCR and NLP. Supports English, French, Swahili, Arabic, and Amharic.",
+      "Intelligent document extraction with OCR and NLP. AI handles tedious data entry while humans focus on strategic oversight and validation.",
   },
   {
     icon: BarChart3,
-    title: "Advanced Analytics",
-    tagline: "Unlock AfCFTA's $3.4T market",
+    title: "Granular Market Intelligence",
+    tagline: "Real-time analytics",
     description:
-      "Predictive insights track supply chain trends and optimize sourcing for SMEs and traders.",
+      "Advanced predictive insights track supply chain trends, enabling strategic decision-making for all stakeholders.",
   },
   {
     icon: Smartphone,
-    title: "Low-Resource Optimization",
-    tagline: "Works offline on basic devices",
+    title: "Human-in-the-Loop Validation",
+    tagline: "Empowerment, not replacement",
     description:
-      "Operates on budget Android phones with offline mode. Syncs when connectivity is restored.",
+      "AI suggests and automates; agents review, confirm, and maintain control. Combining speed with expert oversight.",
   },
   {
     icon: Lock,
-    title: "Transparency Tools",
-    tagline: "Blockchain audit trails",
+    title: "Real-Time Transparency",
+    tagline: "Tracking for all parties",
     description:
-      "Ensures transparency and reduces fraud risks in public procurement contracts.",
+      "Every stakeholder—importers, agents, institutions—gets full visibility into the process status and progress.",
   },
   {
     icon: Tag,
-    title: "Custom Codification",
-    tagline: "70% faster HS code classification",
+    title: "Smart HS Codification",
+    tagline: "AI-suggested, agent-confirmed",
     description:
-      "Automates export/import codes compliant with EU, COMESA, ECOWAS, and EAC standards.",
+      "Automated code suggestions compliant with EU, COMESA, ECOWAS, and EAC standards. Agents validate for accuracy.",
   },
   {
     icon: Globe,
-    title: "Sustainability Tracking",
-    tagline: "Monitor environmental impact",
+    title: "Unified Data Ecosystem",
+    tagline: "Breaking down silos",
     description:
-      "AI-driven green procurement tools for compliance and resource optimization.",
+      "A single platform connecting all stakeholders with shared data, eliminating fragmented systems and disjointed views.",
   },
 ];
 
