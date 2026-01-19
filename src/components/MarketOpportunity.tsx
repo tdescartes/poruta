@@ -22,7 +22,7 @@ const stats = [
   },
   {
     icon: Rocket,
-    value: "MVP Ready",
+    value: "Live Platform",
     label: "Traction & Roadmap",
     description: "Developed and seeking pilot partnerships",
   },
