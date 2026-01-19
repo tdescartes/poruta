@@ -15,7 +15,7 @@ const stakeholderBenefits = [
   },
   {
     icon: FileCheck,
-    title: "For RRA Agents",
+    title: "For Custom Agents",
     color: "from-green-500 to-green-600",
     benefits: [
       { icon: Users, label: "Empowerment", description: "AI handles tedious tasks; agents focus on high-value review and oversight" },
