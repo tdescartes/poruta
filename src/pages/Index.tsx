@@ -9,10 +9,8 @@ import MarketOpportunity from "@/components/MarketOpportunity";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import CTAFooter from "@/components/CTAFooter";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navbar />
       <Hero />
       <Challenges />
@@ -21,11 +19,9 @@ const Index = () => {
       <Benefits />
       <CompetitiveAdvantage />
       <MarketOpportunity />
-      <Testimonials />
+      
       <Contact />
       <CTAFooter />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
