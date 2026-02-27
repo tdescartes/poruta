@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Quote } from "lucide-react";
@@ -57,7 +59,7 @@ const Testimonials = () => {
             
             <div className="relative z-10 animate-fade-in" key={currentIndex}>
               <blockquote className="text-xl md:text-2xl text-foreground mb-6 leading-relaxed font-medium">
-                "{testimonials[currentIndex].quote}"
+                &ldquo;{testimonials[currentIndex].quote}&rdquo;
               </blockquote>
               
               <div className="flex items-center gap-4">
