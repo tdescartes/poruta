@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHomePage = pathname === '/';
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,52 +20,44 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = isHomePage ? [
-    { name: "Home", href: "#home", type: "anchor" },
-    { name: "Features", href: "#features", type: "anchor" },
-    { name: "About", href: "#about", type: "anchor" },
-    { name: "Contact", href: "#contact", type: "anchor" },
-  ] : [
-    { name: "Home", href: "/", type: "route" },
-    { name: "Features", href: "/features", type: "route" },
-    { name: "About", href: "/about", type: "route" },
-    { name: "Pricing", href: "/pricing", type: "route" },
-  ];
+  const navLinks = isHomePage
+    ? [
+        { name: "Scale", href: "#scale", type: "anchor" },
+        { name: "Platform", href: "#platform", type: "anchor" },
+        { name: "Capabilities", href: "#capabilities", type: "anchor" },
+        { name: "About", href: "#about", type: "anchor" },
+      ]
+    : [
+        { name: "Home", href: "/", type: "route" },
+        { name: "Features", href: "/features", type: "route" },
+        { name: "About", href: "/about", type: "route" },
+        { name: "Pricing", href: "/pricing", type: "route" },
+      ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card shadow-sm" : "backdrop-blur-sm bg-black/10"
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed w-full bg-surface-50/95 backdrop-blur-md z-50 border-b border-surface-200 transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
           <div className="flex-shrink-0">
-            <Link 
-              href="/" 
-              className="hover:opacity-80 transition-opacity"
-            >
+            <Link href="/" className="hover:opacity-80 transition-opacity">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/poruta-logo.png" 
-                alt="Poruta" 
+              <img
+                src="/poruta-logo.png"
+                alt="Poruta"
                 className="h-10 w-auto"
               />
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => 
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center space-x-10 text-xs font-bold text-surface-600 uppercase tracking-widest">
+            {navLinks.map((link) =>
               link.type === "anchor" ? (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:tracking-wide ${
-                    isScrolled 
-                      ? "text-foreground hover:text-primary" 
-                      : "text-white hover:text-white/90"
-                  }`}
-                  style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
+                  className="hover:text-surface-900 transition-colors"
                 >
                   {link.name}
                 </a>
@@ -73,28 +65,27 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative transition-all duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:tracking-wide ${
-                    isScrolled 
-                      ? "text-foreground hover:text-primary" 
-                      : "text-white hover:text-white/90"
-                  }`}
-                  style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
+                  className="hover:text-surface-900 transition-colors"
                 >
                   {link.name}
                 </Link>
               )
             )}
-            <BookDemoModal className="hover:scale-105 transition-transform" />
+            <BookDemoModal
+              trigger={
+                <a className="bg-surface-900 text-white px-6 py-3 hover:bg-poruta-700 transition-colors cursor-pointer">
+                  Book Demo
+                </a>
+              }
+            />
           </div>
 
+          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`transition-colors ${
-                isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-white/90"
-              }`}
+              className="text-surface-900 focus:outline-none"
               aria-label="Toggle menu"
-              style={!isScrolled ? { textShadow: '0 2px 4px rgba(0,0,0,0.3)' } : {}}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -102,15 +93,16 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-card shadow-lg animate-fade-in">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => 
+        <div className="md:hidden bg-surface-50 border-t border-surface-200 animate-fade-in">
+          <div className="px-4 pt-2 pb-4 space-y-1">
+            {navLinks.map((link) =>
               link.type === "anchor" ? (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                  className="block py-3 text-xs font-bold text-surface-600 uppercase tracking-widest hover:text-surface-900 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -119,7 +111,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                  className="block py-3 text-xs font-bold text-surface-600 uppercase tracking-widest hover:text-surface-900 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -127,7 +119,13 @@ const Navbar = () => {
               )
             )}
             <div onClick={() => setIsMobileMenuOpen(false)}>
-              <BookDemoModal className="w-full mt-2" />
+              <BookDemoModal
+                trigger={
+                  <button className="w-full mt-2 bg-surface-900 text-white px-6 py-3 hover:bg-poruta-700 transition-colors text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    Book Demo
+                  </button>
+                }
+              />
             </div>
           </div>
         </div>

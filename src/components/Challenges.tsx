@@ -1,100 +1,77 @@
-import { Package, FileCheck, Building2 } from "lucide-react";
-import { Card } from "@/components/ui/card";
-
-const stakeholderChallenges = [
-  {
-    icon: Package,
-    title: "For Importers",
-    challenges: [
-      {
-        label: "Extended Delays",
-        description: "Customs declaration can take weeks, with no real-time visibility or tracking",
-      },
-      {
-        label: "Financial Loss",
-        description: "Goods stuck in warehouses incur demurrage fees and disrupt supply chains",
-      },
-      {
-        label: "Opaque Process",
-        description: "Lengthy back-and-forth communication without clear progress updates",
-      },
-    ],
-  },
-  {
-    icon: FileCheck,
-    title: "For RRA Agents",
-    challenges: [
-      {
-        label: "Error-Prone Workflow",
-        description: "Manual data entry and document verification lead to mistakes",
-      },
-      {
-        label: "High-Risk Environment",
-        description: "Agents face penalties for errors, forcing slow, cautious work",
-      },
-      {
-        label: "Inefficient Codification",
-        description: "Manual HS code lookups are time-consuming and inconsistent",
-      },
-    ],
-  },
-  {
-    icon: Building2,
-    title: "For Institutions & Government",
-    challenges: [
-      {
-        label: "Siloed Data",
-        description: "Fragmented systems hinder collaboration and create a disjointed view of trade",
-      },
-      {
-        label: "Limited Analytics",
-        description: "Lack of granular, real-time market intelligence for policy and strategic planning",
-      },
-      {
-        label: "Poor Insights",
-        description: "Inability to leverage data for accurate forecasting and compliance oversight",
-      },
-    ],
-  },
-];
-
 const Challenges = () => {
   return (
-    <section id="challenges" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
-            The Challenges We Solve
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Cross-border trade in Africa faces unique challenges across all stakeholders
-          </p>
-        </div>
+    <section id="platform" className="py-24 lg:pt-32 bg-surface-50 border-b border-surface-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {stakeholderChallenges.map((stakeholder, index) => (
-            <Card
-              key={index}
-              className="p-6 border-0 hover:shadow-lg transition-all animate-fade-in bg-white"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-lg bg-gradient-hero flex items-center justify-center">
-                  <stakeholder.icon className="w-7 h-7 text-white" />
+          {/* Section Header (Sticky on desktop) */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-surface-900 mb-6 tracking-tighter leading-tight">
+              The Cost of<br />Fragmented Trade
+            </h2>
+            <p className="text-lg text-surface-600 leading-relaxed border-l-4 border-surface-300 pl-6">
+              Manual processes and disconnected systems erode margins and introduce massive compliance risks across the logistics ecosystem. We engineer the bottlenecks out.
+            </p>
+          </div>
+
+          {/* Pain Points */}
+          <div className="lg:col-span-7 flex flex-col">
+
+            {/* Importers */}
+            <div className="border-t-2 border-surface-900 pt-8 pb-12">
+              <div className="flex items-baseline justify-between mb-4">
+                <h3 className="text-2xl font-bold text-surface-900 uppercase tracking-wide">Importers</h3>
+                <span className="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Margin Erosion</span>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Costly Delays</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Shipments stuck for weeks awaiting manual clearance processing and document verification.</p>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">{stakeholder.title}</h3>
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Demurrage Fees</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Unpredictable warehousing costs destroying supply chain profitability and operational budgets.</p>
+                </div>
               </div>
+            </div>
 
-              <div className="space-y-4">
-                {stakeholder.challenges.map((challenge, idx) => (
-                  <div key={idx} className="border-l-2 border-primary/30 pl-4 hover:border-primary transition-colors">
-                    <p className="font-semibold text-foreground text-sm">{challenge.label}</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{challenge.description}</p>
-                  </div>
-                ))}
+            {/* Customs Agents */}
+            <div className="border-t border-surface-300 pt-8 pb-12">
+              <div className="flex items-baseline justify-between mb-4">
+                <h3 className="text-2xl font-bold text-surface-900 uppercase tracking-wide">Customs Agents</h3>
+                <span className="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Compliance Risk</span>
               </div>
-            </Card>
-          ))}
+              <div className="grid sm:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Severe Penalties</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Manual data entry inevitably leads to keystroke errors, creating massive liability and fines.</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Throughput Caps</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Reliance on human document processing puts a hard ceiling on business scalability.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Institutions */}
+            <div className="border-t border-surface-300 pt-8 pb-12">
+              <div className="flex items-baseline justify-between mb-4">
+                <h3 className="text-2xl font-bold text-surface-900 uppercase tracking-wide">Institutions</h3>
+                <span className="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Systemic Blind Spots</span>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Data Silos</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Disconnected software systems completely preventing real-time inter-agency oversight.</p>
+                </div>
+                <div>
+                  <h4 className="font-bold text-surface-900 mb-2">Poor Forecasting</h4>
+                  <p className="text-sm text-surface-600 leading-relaxed">Inability to accurately predict regional trade revenues or enforce national regulations effectively.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

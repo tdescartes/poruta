@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Providers from "./providers";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-inter",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-jetbrains-mono",
+});
+
 export const metadata: Metadata = {
-  title: "Revolutionize Procurement in Africa | Poruta AI",
+  title: "Poruta: Intelligent Trade & Procurement Control Tower",
   description:
-    "Revolutionize procurement and import processes in Africa with Poruta AI. Automate documentation, ensure accuracy, and achieve transparency at poruta.com",
+    "Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.",
   authors: [{ name: "Poruta" }],
   keywords:
     "procurement automation Africa, import documentation AI, AfCFTA trade solutions, African supply chain efficiency, Poruta AI",
@@ -24,9 +30,9 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Revolutionize Procurement in Africa | Poruta AI",
+    title: "Poruta: Intelligent Trade & Procurement Control Tower",
     description:
-      "Revolutionize procurement and import processes in Africa with Poruta AI. Automate documentation, ensure accuracy, and achieve transparency.",
+      "Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.",
     type: "website",
     url: "https://poruta.com",
     images: ["/og-image.jpg"],
@@ -34,9 +40,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@poruta",
-    title: "Revolutionize Procurement in Africa | Poruta AI",
+    title: "Poruta: Intelligent Trade & Procurement Control Tower",
     description:
-      "Revolutionize procurement and import processes in Africa with Poruta AI. Automate documentation and ensure accuracy.",
+      "Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.",
     images: ["/og-image.jpg"],
   },
 };
@@ -47,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body>
         <Providers>{children}</Providers>
       </body>

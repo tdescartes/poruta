@@ -1,10 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -20,11 +16,11 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim() || !formData.email.trim()) {
       toast({
-        title: "Oops! Missing information",
-        description: "We need your name and email to reach you",
+        title: "Missing information",
+        description: "Name and email are required.",
         variant: "destructive",
       });
       return;
@@ -34,7 +30,7 @@ const Contact = () => {
     if (!emailRegex.test(formData.email)) {
       toast({
         title: "Invalid email",
-        description: "Please enter a valid email address",
+        description: "Please enter a valid email address.",
         variant: "destructive",
       });
       return;
@@ -43,40 +39,33 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Submit to Google Forms
       const formBody = new URLSearchParams();
-      formBody.append('entry.89711842', formData.name);
-      formBody.append('entry.432833327', formData.email);
-      if (formData.company) formBody.append('entry.666677065', formData.company);
-      if (formData.phone) formBody.append('entry.974077450', formData.phone);
-      if (formData.message) formBody.append('entry.65402589', formData.message);
+      formBody.append("entry.89711842", formData.name);
+      formBody.append("entry.432833327", formData.email);
+      if (formData.company) formBody.append("entry.666677065", formData.company);
+      if (formData.phone) formBody.append("entry.974077450", formData.phone);
+      if (formData.message) formBody.append("entry.65402589", formData.message);
 
       await fetch(
-        'https://docs.google.com/forms/d/e/1FAIpQLSci4iYnLMagsWzDEsWcqaN5Pxp6vrXg4kBbAxuauauHrZqi7g/formResponse',
+        "https://docs.google.com/forms/d/e/1FAIpQLSci4iYnLMagsWzDEsWcqaN5Pxp6vrXg4kBbAxuauauHrZqi7g/formResponse",
         {
-          method: 'POST',
+          method: "POST",
           body: formBody,
-          mode: 'no-cors', // Required for Google Forms
+          mode: "no-cors",
         }
       );
 
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours",
+        title: "Request submitted",
+        description: "We'll be in touch within 24 hours.",
       });
 
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
     } catch (error) {
-      console.error('Contact submission error:', error);
+      console.error("Contact submission error:", error);
       toast({
         title: "Something went wrong",
-        description: error instanceof Error ? error.message : "Please try again or email us directly",
+        description: error instanceof Error ? error.message : "Please try again or email us directly.",
         variant: "destructive",
       });
     } finally {
@@ -84,136 +73,108 @@ const Contact = () => {
     }
   };
 
+  const inputClasses =
+    "w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors";
+
   return (
-    <section id="contact" className="py-16 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Get in Touch
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond within 24 hours.
+    <section id="demo" className="py-24 bg-surface-50 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16">
+          <h2 className="text-4xl font-extrabold text-surface-900 mb-4 tracking-tighter">Getting Started</h2>
+          <p className="text-lg text-surface-600 max-w-2xl">
+            Fill out the form below to register your company, and you can expect to hear from us shortly to schedule your personalized walkthrough.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <div className="animate-fade-in">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Your Name *"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full"
-                  required
-                />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Form */}
+          <div className="lg:col-span-8">
+            <form onSubmit={handleSubmit} className="bg-white border-2 border-surface-900 p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-xs font-mono text-surface-600 mb-2 uppercase">01. Full_Name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g., Jane Doe"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className={inputClasses}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono text-surface-600 mb-2 uppercase">02. Work_Email</label>
+                  <input
+                    type="email"
+                    placeholder="e.g., jane@enterprise.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className={inputClasses}
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <Input
-                  type="email"
-                  placeholder="Email Address *"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full"
-                  required
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-xs font-mono text-surface-600 mb-2 uppercase">03. Company_Name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g., Acme Logistics"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className={inputClasses}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono text-surface-600 mb-2 uppercase">04. Phone_No</label>
+                  <input
+                    type="tel"
+                    placeholder="e.g., +250 000 000"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className={inputClasses}
+                  />
+                </div>
               </div>
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Company Name"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full"
-                />
-              </div>
-              <div>
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full"
-                />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="Your Message"
+              <div className="mb-8">
+                <label className="block text-xs font-mono text-surface-600 mb-2 uppercase">05. Your_Needs</label>
+                <textarea
+                  rows={4}
+                  placeholder="Tell us about your current challenges and needs..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full min-h-[120px]"
+                  className={`${inputClasses} resize-none`}
                 />
               </div>
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="w-full"
                 disabled={isSubmitting}
+                className="w-full bg-surface-900 hover:bg-poruta-700 text-white font-bold py-4 transition-colors text-sm uppercase tracking-widest btn-strict disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
+                {isSubmitting ? "Submitting..." : "Submit Request"}
+              </button>
             </form>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">Email</h4>
-                    <a
-                      href="mailto:sales@poruta.com"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      sales@poruta.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">Phone</h4>
-                    <a
-                      href="tel:+250787567656"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      +250 787 567 656
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1">Location</h4>
-                    <p className="text-muted-foreground">
-                      Kigali, Rwanda
-                      <br />
-                      Serving businesses across Africa
-                    </p>
-                  </div>
-                </div>
+          <div className="lg:col-span-4 flex flex-col justify-center">
+            <div className="border-l-2 border-surface-200 pl-8 space-y-8">
+              <div>
+                <h4 className="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">Comms_Channel</h4>
+                <a href="mailto:sales@poruta.com" className="text-surface-900 font-bold text-lg hover:text-poruta-700 transition-colors">
+                  sales@poruta.com
+                </a>
               </div>
-            </div>
-
-            <div className="pt-6 border-t border-border">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">Response Time:</span> We typically respond within 24 hours during business days.
-              </p>
+              <div>
+                <h4 className="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">Direct_Line</h4>
+                <span className="text-surface-900 font-bold text-lg">+250 787 567 656</span>
+              </div>
+              <div>
+                <h4 className="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">HQ_Node</h4>
+                <span className="text-surface-900 font-bold text-base leading-snug block">
+                  Kigali, Rwanda<br />Serving the African Continent
+                </span>
+              </div>
             </div>
           </div>
         </div>
