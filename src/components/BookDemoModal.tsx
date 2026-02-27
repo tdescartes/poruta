@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   Dialog,
@@ -107,7 +109,7 @@ const BookDemoModal = ({ trigger, variant = "default", size = "default", classNa
         <DialogHeader>
           <DialogTitle className="text-2xl">Book Your Demo</DialogTitle>
           <DialogDescription>
-            See how Poruta transforms procurement. We'll reach out within 24 hours.
+            See how Poruta transforms procurement. We&apos;ll reach out within 24 hours.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
