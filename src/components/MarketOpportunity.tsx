@@ -38,7 +38,7 @@ const MarketOpportunity = () => {
           </h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
             AfCFTA is unlocking unprecedented opportunities. Rising trade complexity and volume 
-            as Africa's economy grows creates the perfect conditions for Poruta.
+            as Africa&apos;s economy grows creates the perfect conditions for Poruta.
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const MarketOpportunity = () => {
 
         <div className="mt-12 text-center animate-fade-in">
           <p className="text-white/80 max-w-3xl mx-auto">
-            With rising trade complexity and volume as Rwanda and Africa's economies grow, 
+            With rising trade complexity and volume as Rwanda and Africa&apos;s economies grow, 
             Poruta is positioned to become the essential infrastructure for cross-border trade automation.
           </p>
         </div>
