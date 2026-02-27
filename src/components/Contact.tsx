@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -90,7 +92,7 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have questions? We'd love to hear from you. Send us a message and we'll respond within 24 hours.
+            Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond within 24 hours.
           </p>
         </div>
 
