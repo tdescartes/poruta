@@ -1,12 +1,11 @@
 import BookDemoModal from "@/components/BookDemoModal";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        style={{ backgroundImage: `url(/hero-bg.jpg)` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
       </div>
@@ -32,7 +31,7 @@ const Hero = () => {
             </a>
           </div>
           <p className="text-sm text-white/70 font-medium mt-6">
-            Intelligent Automation Meets Expert Validation – Built for Africa's Future.
+            Intelligent Automation Meets Expert Validation – Built for Africa&apos;s Future.
           </p>
         </div>
       </div>
