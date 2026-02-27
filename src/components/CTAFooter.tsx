@@ -1,5 +1,5 @@
 import { Twitter, Linkedin, Mail } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import BookDemoModal from "@/components/BookDemoModal";
 
 const CTAFooter = () => {
@@ -27,29 +27,29 @@ const CTAFooter = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Poruta</h3>
               <p className="text-secondary-foreground/70 text-sm">
-                Powering Africa's Trade with AI
+                Powering Africa&apos;s Trade with AI
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link to="/about" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
+                  <Link href="/about" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link to="/features" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
+                  <Link href="/features" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link to="/pricing" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
+                  <Link href="/pricing" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link to="/privacy" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
+                  <Link href="/privacy" className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors hover:underline">
                     Privacy Policy
                   </Link>
                 </li>
