@@ -1,14 +1,16 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import BookDemoModal from "@/components/BookDemoModal";
-import porutaLogo from "@/assets/poruta-logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +42,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link 
-              to="/" 
+              href="/" 
               className="hover:opacity-80 transition-opacity"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src={porutaLogo} 
+                src="/poruta-logo.png" 
                 alt="Poruta" 
                 className="h-10 w-auto"
               />
@@ -69,7 +72,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   key={link.name}
-                  to={link.href}
+                  href={link.href}
                   className={`relative transition-all duration-200 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full hover:tracking-wide ${
                     isScrolled 
                       ? "text-foreground hover:text-primary" 
@@ -115,7 +118,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   key={link.name}
-                  to={link.href}
+                  href={link.href}
                   className="block py-2 text-foreground hover:text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
