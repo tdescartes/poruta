@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poruta: Intelligent Trade & Procurement Control Tower</title>
+    <meta name="description" content="Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Minimal usage) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        // Core Poruta Brand
+                        poruta: {
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#008000', // Primary
+                            800: '#006400',
+                        },
+                        // Bespoke Tinted Neutrals (Replaces generic Slate/Gray)
+                        surface: {
+                            50: '#fbfcfb', // Off-white paper
+                            100: '#f2f5f3',
+                            200: '#e1e7e3',
+                            300: '#c5d0cb',
+                            400: '#a3b3ac',
+                            500: '#83958d',
+                            600: '#677871',
+                            700: '#54625d',
+                            800: '#45504c',
+                            900: '#1b231f', // Deep UI dark
+                            950: '#0d1310', // Terminal black
+                        }
+                    },
+                    animation: {
+                        'cursor-blink': 'blink 1s step-end infinite',
+                        'handshake-flow': 'handshakeFlow 4s infinite',
+                        'core-flash': 'coreFlash 4s infinite',
+                        'bb-progress': 'bbProgress 5s infinite',
+                        'bb-phase-1': 'bbPhase1 5s infinite',
+                        'bb-phase-2': 'bbPhase2 5s infinite',
+                        'bb-status-1': 'bbStatus1 5s infinite',
+                        'bb-status-2': 'bbStatus2 5s infinite',
+                        'hero-phase-1': 'heroPhase1 10s infinite',
+                        'hero-phase-2': 'heroPhase2 10s infinite',
+                        'hero-phase-3': 'heroPhase3 10s infinite',
+                        'hero-progress': 'heroProgress 10s infinite',
+                    },
+                    keyframes: {
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' }
+                        },
+                        handshakeFlow: {
+                            '0%': { transform: 'translateY(0)', backgroundColor: '#677871', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '40%': { transform: 'translateY(116px)', backgroundColor: '#677871' },
+                            '45%': { transform: 'translateY(116px)', backgroundColor: '#008000' },
+                            '50%': { transform: 'translateY(116px)', backgroundColor: '#008000' },
+                            '90%': { transform: 'translateY(232px)', backgroundColor: '#008000', opacity: '1' },
+                            '100%': { transform: 'translateY(232px)', opacity: '0' },
+                        },
+                        coreFlash: {
+                            '0%, 40%': { borderColor: '#45504c', color: '#677871', backgroundColor: '#0d1310' },
+                            '45%, 55%': { borderColor: '#008000', color: '#ffffff', backgroundColor: 'rgba(0, 128, 0, 0.15)' },
+                            '60%, 100%': { borderColor: '#45504c', color: '#677871', backgroundColor: '#0d1310' },
+                        },
+                        bbProgress: {
+                            '0%, 20%': { width: '0%' },
+                            '44%, 100%': { width: '100%' }
+                        },
+                        bbPhase1: {
+                            '0%, 44%': { opacity: '1' },
+                            '45%, 100%': { opacity: '0' }
+                        },
+                        bbPhase2: {
+                            '0%, 44%': { opacity: '0', transform: 'translateY(5px)' },
+                            '45%, 90%': { opacity: '1', transform: 'translateY(0)' },
+                            '95%, 100%': { opacity: '0', transform: 'translateY(5px)' }
+                        },
+                        bbStatus1: {
+                            '0%, 20%': { opacity: '1' },
+                            '21%, 100%': { opacity: '0' }
+                        },
+                        bbStatus2: {
+                            '0%, 20%': { opacity: '0' },
+                            '21%, 44%': { opacity: '1' },
+                            '45%, 100%': { opacity: '0' }
+                        },
+                        /* Hero Macro Command Center Timing (10s Loop) */
+                        heroPhase1: {
+                            '0%, 25%': { opacity: '1' },
+                            '26%, 100%': { opacity: '0' }
+                        },
+                        heroPhase2: {
+                            '0%, 25%': { opacity: '0' },
+                            '26%, 37%': { opacity: '1' },
+                            '38%, 100%': { opacity: '0' }
+                        },
+                        heroPhase3: {
+                            '0%, 37%': { opacity: '0' },
+                            '38%, 90%': { opacity: '1' },
+                            '95%, 100%': { opacity: '0' }
+                        },
+                        heroProgress: {
+                            '0%, 26%': { width: '0%' },
+                            '38%, 100%': { width: '100%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(13, 19, 16, 0.9), rgba(13, 19, 16, 0.98)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Strict hover effects - no soft blooms */
+        .btn-strict {
+            transition: all 0.2s ease-out;
+        }
+        .btn-strict:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+        .btn-strict-light:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
+        }
+        /* Hide scrollbars for clean UI */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans text-surface-900 bg-surface-50 antialiased selection:bg-poruta-700 selection:text-white">
+
+    <!-- Navigation (Sharp, Minimalist) -->
+    <nav class="fixed w-full bg-surface-50/95 backdrop-blur-md z-50 border-b border-surface-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-8 h-8 bg-poruta-700 flex items-center justify-center">
+                        <i data-lucide="box" class="text-white w-4 h-4"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-surface-900 uppercase">Poruta</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-10 text-xs font-bold text-surface-600 uppercase tracking-widest">
+                    <a href="#scale" class="hover:text-surface-900 transition-colors">Scale</a>
+                    <a href="#platform" class="hover:text-surface-900 transition-colors">Platform</a>
+                    <a href="#capabilities" class="hover:text-surface-900 transition-colors">Capabilities</a>
+                    <a href="#about" class="hover:text-surface-900 transition-colors">About</a>
+                    <a href="#demo" class="bg-surface-900 text-white px-6 py-3 hover:bg-poruta-700 transition-colors">Book Demo</a>
+                </div>
+                <!-- Mobile menu -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-surface-900 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section (Hook) -->
+    <section class="relative pt-32 pb-32 lg:pt-48 lg:pb-48 hero-bg overflow-hidden border-b border-surface-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16">
+            
+            <!-- Hero Text (Editorial, Strict) -->
+            <div class="flex-1 text-left">
+                <div class="inline-flex items-center gap-3 mb-8 border border-surface-700 bg-surface-900/50 px-4 py-2 text-xs font-mono text-poruta-400 uppercase tracking-widest">
+                    <span class="w-2 h-2 bg-poruta-500 animate-cursor-blink"></span>
+                    System Online
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tighter mb-8 leading-[1.1]">
+                    The Intelligent<br/>
+                    Trade Control<br/>
+                    Tower
+                </h1>
+                <p class="text-lg md:text-xl text-surface-300 mb-12 max-w-xl font-normal leading-relaxed">
+                    Frictionless cross-border trade for Africa. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#demo" class="px-8 py-4 bg-poruta-700 text-white font-bold text-sm uppercase tracking-widest btn-strict-light border border-poruta-600 flex justify-center items-center w-full sm:w-auto">
+                        Book a Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Functional UI Motion: Macro Command Center (Business Focus) -->
+            <div class="flex-1 w-full max-w-2xl hidden lg:block">
+                <div class="bg-surface-950 border border-surface-800 shadow-[16px_16px_0px_0px_rgba(0,128,0,0.15)] relative h-[420px] flex flex-col overflow-hidden">
+                    
+                    <!-- Dashboard Header -->
+                    <div class="h-10 border-b border-surface-800 flex justify-between items-center px-4 bg-surface-900">
+                        <div class="text-surface-500 text-[10px] font-mono uppercase tracking-widest flex items-center gap-2">
+                            <i data-lucide="globe" class="w-3 h-3"></i> MACRO_COMMAND_CENTER
+                        </div>
+                        <div class="text-poruta-500 text-[10px] font-mono flex items-center gap-2">
+                            LIVE_TRACKING <span class="w-2 h-2 bg-poruta-500 animate-cursor-blink"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Dashboard Body -->
+                    <div class="p-8 flex-1 bg-[#0a0f0d] flex items-center justify-center relative">
+                        
+                        <!-- Main Tracking Card -->
+                        <div class="w-full max-w-md bg-surface-900 border border-surface-700 relative h-[220px] flex flex-col shadow-2xl">
+                            
+                            <!-- Static Header -->
+                            <div class="border-b border-surface-800 p-4 flex justify-between items-center bg-surface-950">
+                                <div>
+                                    <div class="text-[10px] text-surface-500 font-mono mb-1 tracking-widest uppercase">Consignment_Ref</div>
+                                    <div class="text-lg text-white font-mono font-bold tracking-tight">#4492-KGL</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-[10px] text-surface-500 font-mono mb-1 tracking-widest uppercase">Route</div>
+                                    <div class="text-sm text-surface-300 font-mono font-bold flex items-center gap-2">SHG <i data-lucide="arrow-right" class="w-3 h-3 text-surface-500"></i> KGL</div>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Content Container -->
+                            <div class="relative flex-1 overflow-hidden">
+                                
+                                <!-- Phase 1: Hold (Amber Pain Point) -->
+                                <div class="absolute inset-0 p-5 bg-surface-900 animate-hero-phase-1 border-l-4 border-amber-500 flex flex-col justify-between">
+                                    <div class="bg-amber-500/10 border border-amber-500/30 p-4 flex items-start gap-4">
+                                        <div class="w-8 h-8 bg-amber-500 text-surface-950 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-amber-500 font-bold uppercase tracking-widest text-sm mb-1">Customs Hold</div>
+                                            <div class="text-amber-200/60 text-[10px] font-mono uppercase leading-tight">Awaiting Manual Classification<br/>Clearance Paused</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-end border-t border-surface-800 pt-3">
+                                        <div class="text-surface-500 text-[10px] font-mono">EST_DELAY: 14 DAYS</div>
+                                        <div class="text-right flex flex-col items-end">
+                                            <div class="text-surface-500 text-[10px] font-mono mb-1 uppercase tracking-widest">Demurrage Risk</div>
+                                            <div class="text-red-400 font-mono text-xl font-bold tracking-tighter bg-red-500/10 px-2 py-0.5 border border-red-500/20 animate-pulse">+$2,450</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Phase 2: Poruta Processing Overlay -->
+                                <div class="absolute inset-0 bg-surface-950/95 animate-hero-phase-2 z-10 flex flex-col justify-center p-6 border-l-4 border-poruta-500">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="text-poruta-400 text-[10px] font-mono uppercase tracking-widest flex items-center gap-2">
+                                            <i data-lucide="zap" class="w-3 h-3"></i> Control Tower Active
+                                        </span>
+                                        <span class="text-surface-500 text-[10px] font-mono animate-pulse">Resolving...</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-surface-900 border border-surface-700 overflow-hidden">
+                                        <div class="h-full bg-poruta-500 animate-hero-progress shadow-[0_0_10px_#22c55e]"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Phase 3: Cleared (Green Payoff) -->
+                                <div class="absolute inset-0 p-5 bg-surface-900 animate-hero-phase-3 z-20 border-l-4 border-poruta-500 flex flex-col justify-between">
+                                    <div class="flex items-center gap-4 mt-2">
+                                        <div class="w-12 h-12 bg-poruta-500 text-surface-950 flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                                            <i data-lucide="check" class="w-8 h-8"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-poruta-400 font-bold uppercase tracking-widest text-lg leading-none mb-1.5">Clearance Authorized</div>
+                                            <div class="text-surface-400 text-[10px] font-mono uppercase">Compliance Verified</div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 border-t border-surface-800 pt-4">
+                                        <div>
+                                            <div class="text-surface-500 text-[9px] font-mono mb-1 uppercase tracking-widest">Time</div>
+                                            <div class="text-white font-mono text-base font-bold">1.2s</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-surface-500 text-[9px] font-mono mb-1 uppercase tracking-widest">Security</div>
+                                            <div class="text-poruta-400 font-mono text-base font-bold">100%</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-surface-500 text-[9px] font-mono mb-1 uppercase tracking-widest">Saved</div>
+                                            <div class="text-white font-mono text-base font-bold">$2,450</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Market Scale (Context & Trust - The "Palate Cleanser" Enterprise Ribbon) -->
+    <section id="scale" class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 lg:-mt-20">
+        <div class="bg-white border border-surface-200 shadow-2xl flex flex-col lg:flex-row">
+            
+            <!-- Branding / Context -->
+            <div class="p-8 lg:p-10 lg:w-1/3 bg-surface-50 border-b lg:border-b-0 lg:border-r border-surface-200 flex flex-col justify-center">
+                <h2 class="text-2xl font-extrabold text-surface-900 tracking-tighter mb-2 uppercase">Continental Scale</h2>
+                <p class="text-sm text-surface-600 leading-relaxed">Enterprise infrastructure engineered to handle the complexity of the world's largest free trade area.</p>
+            </div>
+            
+            <!-- Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:w-2/3 divide-y sm:divide-y-0 sm:divide-x divide-surface-200">
+                <div class="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">1.7B</div>
+                    <div class="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Population</div>
+                    <div class="text-xs text-surface-500">AfCFTA demographic</div>
+                </div>
+                <div class="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">$6.7T</div>
+                    <div class="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Spend</div>
+                    <div class="text-xs text-surface-500">Projected by 2030</div>
+                </div>
+                <div class="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">54</div>
+                    <div class="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Nations</div>
+                    <div class="text-xs text-surface-500">Regulations unified</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. The Problem Section (Agitation) -->
+    <section id="platform" class="py-24 lg:pt-32 bg-surface-50 border-b border-surface-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Section Header -->
+                <div class="lg:col-span-5 sticky top-32">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-surface-900 mb-6 tracking-tighter leading-tight">The Cost of<br/>Fragmented Trade</h2>
+                    <p class="text-lg text-surface-600 leading-relaxed border-l-4 border-surface-300 pl-6">
+                        Manual processes and disconnected systems erode margins and introduce massive compliance risks across the logistics ecosystem. We engineer the bottlenecks out.
+                    </p>
+                </div>
+
+                <!-- Pain Points (Strict bordered list) -->
+                <div class="lg:col-span-7 flex flex-col">
+                    
+                    <div class="border-t-2 border-surface-900 pt-8 pb-12">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-surface-900 uppercase tracking-wide">Importers</h3>
+                            <span class="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Margin Erosion</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-8 mt-6">
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Costly Delays</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Shipments stuck for weeks awaiting manual clearance processing and document verification.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Demurrage Fees</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Unpredictable warehousing costs destroying supply chain profitability and operational budgets.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-surface-300 pt-8 pb-12">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-surface-900 uppercase tracking-wide">Customs Agents</h3>
+                            <span class="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Compliance Risk</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-8 mt-6">
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Severe Penalties</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Manual data entry inevitably leads to keystroke errors, creating massive liability and fines.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Throughput Caps</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Reliance on human document processing puts a hard ceiling on business scalability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-surface-300 pt-8 pb-12">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-surface-900 uppercase tracking-wide">Institutions</h3>
+                            <span class="text-xs font-mono text-surface-500 bg-surface-200 px-2 py-1">Systemic Blind Spots</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-8 mt-6">
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Data Silos</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Disconnected software systems completely preventing real-time inter-agency oversight.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-surface-900 mb-2">Poor Forecasting</h4>
+                                <p class="text-sm text-surface-600 leading-relaxed">Inability to accurately predict regional trade revenues or enforce national regulations effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Capabilities (Solution with Black Box Dashboard) -->
+    <section id="capabilities" class="py-24 bg-white border-b border-surface-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20 text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-surface-900 tracking-tighter mb-4">Platform Capabilities</h2>
+                <p class="text-lg text-surface-600">Built to handle the complexity and scale of modern cross-border operations.</p>
+            </div>
+            
+            <div class="space-y-16">
+                <!-- Cap 1: Instant Document Processing (The Black Box) -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-surface-50 p-12 border border-surface-200 h-full flex flex-col justify-center">
+                        <div class="text-xs font-mono text-poruta-700 mb-4 border border-poruta-700 inline-block px-2 py-1 self-start">MODULE_01</div>
+                        <h3 class="text-3xl font-bold text-surface-900 mb-4 tracking-tight">Instant Document Processing</h3>
+                        <p class="text-surface-600 leading-relaxed text-lg">
+                            Eliminate data entry bottlenecks. Our system ingests complex commercial invoices, packing lists, and shipping manifests, structuring the raw data instantly for your team to review and approve.
+                        </p>
+                    </div>
+                    <div class="bg-surface-900 p-8 md:p-12 border border-surface-800 h-full flex flex-col justify-center relative overflow-hidden">
+                        <!-- Blueprint grid background -->
+                        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        
+                        <!-- The "Black Box" Status Dashboard -->
+                        <div class="relative z-10 border border-surface-700 bg-surface-950 flex flex-col w-full shadow-[8px_8px_0px_0px_rgba(13,19,16,1)] font-mono text-xs h-[240px]">
+                            <!-- Dashboard Header -->
+                            <div class="border-b border-surface-800 px-5 py-3 flex justify-between items-center bg-surface-900">
+                                <span class="text-surface-400 font-bold tracking-widest uppercase">Batch_ID: #INV-4492</span>
+                                <span class="flex items-center gap-2 text-surface-500 text-[10px]">
+                                    <span class="w-2 h-2 bg-poruta-500 inline-block animate-cursor-blink"></span> LIVE
+                                </span>
+                            </div>
+
+                            <!-- Dashboard Body -->
+                            <div class="relative flex-1 overflow-hidden bg-[#0a0f0d]">
+                                
+                                <!-- Phase 1: Input & Processing -->
+                                <div class="absolute inset-0 p-6 flex flex-col justify-center animate-bb-phase-1">
+                                    <div class="text-surface-500 mb-1 uppercase tracking-widest text-[10px]">Attachments</div>
+                                    <div class="text-surface-200 text-sm font-bold mb-8 flex items-center gap-3">
+                                        <i data-lucide="file-text" class="w-5 h-5 text-surface-400"></i>
+                                        12-Page Commercial Invoice
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-end mb-2">
+                                        <span class="text-surface-500 uppercase tracking-widest text-[10px]">System Status</span>
+                                        <div class="relative w-32 h-4 text-right font-bold text-sm">
+                                            <span class="absolute right-0 top-0 text-surface-500 animate-bb-status-1">Unprocessed</span>
+                                            <span class="absolute right-0 top-0 text-poruta-400 animate-bb-status-2">Processing...</span>
+                                        </div>
+                                    </div>
+                                    <div class="w-full h-2 bg-surface-800 overflow-hidden">
+                                        <div class="h-full bg-poruta-500 animate-bb-progress"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Phase 2: Output / Value -->
+                                <div class="absolute inset-0 p-6 flex flex-col justify-center bg-[#0a0f0d] animate-bb-phase-2 opacity-0">
+                                    <div class="border border-poruta-800 bg-poruta-900/20 p-4 mb-5 flex justify-between items-center">
+                                        <div>
+                                            <div class="text-poruta-400 font-bold text-sm tracking-wide mb-1">CLEARANCE READY</div>
+                                            <div class="text-surface-500 text-[10px] uppercase tracking-widest">Processing Time: 1.2s</div>
+                                        </div>
+                                        <i data-lucide="check-circle-2" class="w-6 h-6 text-poruta-500"></i>
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center mb-4 border-b border-surface-800 pb-4">
+                                        <span class="text-surface-500 uppercase tracking-widest text-[10px]">System Confidence</span>
+                                        <span class="text-white font-bold bg-surface-800 px-2 py-1">99.8%</span>
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-surface-500 uppercase tracking-widest text-[10px]">Next Action</span>
+                                        <span class="text-amber-400 font-bold flex items-center gap-2 bg-amber-400/10 px-2 py-1 border border-amber-400/20">
+                                            <i data-lucide="user" class="w-3 h-3"></i> AWAITING AGENT REVIEW
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cap 2: Secure Inter-Agency Network -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-surface-900 p-8 md:p-12 border border-surface-800 h-full flex flex-col justify-center text-white md:order-1 order-2 relative overflow-hidden">
+                        <!-- Blueprint grid background -->
+                        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        
+                        <!-- Animated Network Topology -->
+                        <div class="relative z-10 w-full max-w-xs mx-auto font-mono text-[10px] sm:text-xs h-[280px]">
+                            <!-- Track -->
+                            <div class="absolute left-6 top-6 bottom-6 w-[2px] bg-surface-800 z-0"></div>
+
+                            <!-- Animated Packet -->
+                            <div class="absolute left-[19px] w-3 h-3 bg-surface-500 z-10 animate-handshake-flow" style="top: 18px;"></div>
+
+                            <!-- Node 1: Logistics -->
+                            <div class="absolute top-0 left-0 w-full flex items-center gap-4 z-20">
+                                <div class="w-12 h-12 border border-surface-700 bg-surface-950 flex items-center justify-center text-surface-400 relative">
+                                    <div class="absolute -left-1 -top-1 w-2 h-2 border-t border-l border-surface-500"></div>
+                                    <i data-lucide="truck" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 border border-surface-800 bg-surface-950/80 p-2.5 backdrop-blur-sm">
+                                    <span class="text-surface-600 block mb-1">SRC: LOGISTICS</span>
+                                    <span class="text-surface-300 font-bold">[TRX_OUT] DISPATCH</span>
+                                </div>
+                            </div>
+
+                            <!-- Node 2: Poruta Core -->
+                            <div class="absolute top-[116px] left-0 w-full flex items-center gap-4 z-20">
+                                <div class="w-12 h-12 border bg-surface-950 flex items-center justify-center animate-core-flash relative">
+                                    <div class="absolute -left-1 -top-1 w-2 h-2 border-t border-l border-poruta-500"></div>
+                                    <div class="absolute -right-1 -bottom-1 w-2 h-2 border-b border-r border-poruta-500"></div>
+                                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 border bg-surface-950/80 p-2.5 backdrop-blur-sm animate-core-flash">
+                                    <span class="block mb-1 opacity-70">PORUTA_CORE</span>
+                                    <span class="font-bold">[VERIFY_ENGINE]</span>
+                                </div>
+                            </div>
+
+                            <!-- Node 3: Customs -->
+                            <div class="absolute top-[232px] left-0 w-full flex items-center gap-4 z-20">
+                                <div class="w-12 h-12 border border-surface-700 bg-surface-950 flex items-center justify-center text-surface-400 relative">
+                                    <div class="absolute -left-1 -bottom-1 w-2 h-2 border-b border-l border-surface-500"></div>
+                                    <i data-lucide="building" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 border border-surface-800 bg-surface-950/80 p-2.5 backdrop-blur-sm">
+                                    <span class="text-surface-600 block mb-1">DEST: CUSTOMS</span>
+                                    <span class="text-surface-300 font-bold">[TRX_IN] RECEIVED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-50 p-12 border border-surface-200 h-full flex flex-col justify-center md:order-2 order-1">
+                        <div class="text-xs font-mono text-poruta-700 mb-4 border border-poruta-700 inline-block px-2 py-1 self-start">MODULE_02</div>
+                        <h3 class="text-3xl font-bold text-surface-900 mb-4 tracking-tight">Secure Inter-Agency Network</h3>
+                        <p class="text-surface-600 leading-relaxed text-lg mb-6">
+                            Built for institutional scale. We securely bridge the gap between logistics providers, clearing agents, and government tax authorities within a compliant, immutable ecosystem.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. About Section (Corporate Manifesto) -->
+    <section id="about" class="py-24 lg:py-32 bg-surface-900 text-white border-b border-surface-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Left: Mission & Vision -->
+                <div class="lg:col-span-5">
+                    <div class="inline-block px-3 py-1.5 border border-poruta-500 text-poruta-400 font-mono text-xs uppercase tracking-widest mb-6 bg-surface-950">
+                        Developed by LUCRA
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tighter leading-tight">
+                        We are engineering the future of African trade.
+                    </h2>
+                    <p class="text-lg text-surface-400 leading-relaxed mb-12">
+                        Poruta is an AI-Automated Procurement Control Tower featuring Human-in-the-Loop oversight. We are dedicated to enabling faster, accurate, transparent, and compliant cross-border commerce.
+                    </p>
+                    
+                    <div class="space-y-10">
+                        <div class="border-l-2 border-poruta-500 pl-6">
+                            <h3 class="text-xs font-mono text-surface-500 uppercase tracking-widest mb-3">Our Mission</h3>
+                            <p class="text-surface-200 leading-relaxed text-lg">
+                                To connect all trade stakeholders—importers, customs agents, and government institutions—through an intelligent platform featuring multi-party data sharing and real-time dashboards.
+                            </p>
+                        </div>
+                        <div class="border-l-2 border-poruta-500 pl-6">
+                            <h3 class="text-xs font-mono text-surface-500 uppercase tracking-widest mb-3">Our Vision</h3>
+                            <p class="text-surface-200 leading-relaxed text-lg">
+                                To elevate Rwanda's customs clearance efficiency to the <span class="text-poruta-400 font-bold">global top 20 within five years</span>, scaling our technology regionally to act as a powerful catalyst for the AfCFTA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: The Approach (Engineered Grid) -->
+                <div class="lg:col-span-7 lg:pl-12 lg:border-l border-surface-800">
+                    <h3 class="text-xl font-bold text-white mb-10 border-b border-surface-800 pb-4">Our Approach to Technology</h3>
+                    
+                    <div class="flex flex-col">
+                        <!-- Point 1 -->
+                        <div class="border-l-2 border-surface-800 pl-8 pb-12 relative group hover:border-poruta-500 transition-colors duration-300">
+                            <div class="absolute -left-[7px] top-0 w-3 h-3 bg-surface-900 border-2 border-surface-600 group-hover:border-poruta-500 transition-colors duration-300"></div>
+                            <h4 class="text-white font-mono text-sm uppercase tracking-widest mb-3 font-bold group-hover:text-poruta-400 transition-colors">01. Empowering, Not Replacing</h4>
+                            <p class="text-surface-400 leading-relaxed text-base">
+                                We build affordable AI tailored for emerging markets. Our primary goal is to empower human agents to achieve higher throughput, never to replace them.
+                            </p>
+                        </div>
+
+                        <!-- Point 2 -->
+                        <div class="border-l-2 border-surface-800 pl-8 pb-12 relative group hover:border-poruta-500 transition-colors duration-300">
+                            <div class="absolute -left-[7px] top-0 w-3 h-3 bg-surface-900 border-2 border-surface-600 group-hover:border-poruta-500 transition-colors duration-300"></div>
+                            <h4 class="text-white font-mono text-sm uppercase tracking-widest mb-3 font-bold group-hover:text-poruta-400 transition-colors">02. Intelligent Validation</h4>
+                            <p class="text-surface-400 leading-relaxed text-base">
+                                AI handles the heavy lifting of complex document processing, while expert agents retain ultimate control to securely review and approve the extracted data.
+                            </p>
+                        </div>
+
+                        <!-- Point 3 -->
+                        <div class="border-l-2 border-transparent pl-8 relative group">
+                            <div class="absolute -left-[7px] top-0 w-3 h-3 bg-surface-900 border-2 border-surface-600 group-hover:border-poruta-500 transition-colors duration-300"></div>
+                            <h4 class="text-white font-mono text-sm uppercase tracking-widest mb-3 font-bold group-hover:text-poruta-400 transition-colors">03. Compliance & Transparency</h4>
+                            <p class="text-surface-400 leading-relaxed text-base">
+                                We utilize advanced compliance automation to mitigate risk. Our granular market intelligence hub provides real-time, multi-party tracking that ensures complete transparency for every stakeholder involved.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Get in Touch Section (Action) -->
+    <section id="demo" class="py-24 bg-surface-50 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-4xl font-extrabold text-surface-900 mb-4 tracking-tighter">Getting Started</h2>
+                <p class="text-lg text-surface-600 max-w-2xl">Fill out the form below to register your company, and you can expect to hear from us shortly to schedule your personalized walkthrough.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <!-- Form -->
+                <div class="lg:col-span-8">
+                    <form class="bg-white border-2 border-surface-900 p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-mono text-surface-600 mb-2 uppercase">01. Full_Name</label>
+                                <input type="text" placeholder="e.g., Jane Doe" class="w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-surface-600 mb-2 uppercase">02. Work_Email</label>
+                                <input type="email" placeholder="e.g., jane@enterprise.com" class="w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-mono text-surface-600 mb-2 uppercase">03. Company_Name</label>
+                                <input type="text" placeholder="e.g., Acme Logistics" class="w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-surface-600 mb-2 uppercase">04. Phone_No</label>
+                                <input type="tel" placeholder="e.g., +250 000 000" class="w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors">
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label class="block text-xs font-mono text-surface-600 mb-2 uppercase">05. Your_Needs</label>
+                            <textarea rows="4" placeholder="Tell us about your current challenges and needs..." class="w-full px-4 py-3 border border-surface-300 focus:outline-none focus:border-poruta-700 focus:ring-1 focus:ring-poruta-700 bg-surface-50 text-sm font-mono placeholder:text-surface-400 transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="button" class="w-full bg-surface-900 hover:bg-poruta-700 text-white font-bold py-4 transition-colors text-sm uppercase tracking-widest btn-strict">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-4 flex flex-col justify-center">
+                    <div class="border-l-2 border-surface-200 pl-8 space-y-8">
+                        <div>
+                            <h4 class="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">Comms_Channel</h4>
+                            <a href="mailto:sales@poruta.com" class="text-surface-900 font-bold text-lg hover:text-poruta-700 transition-colors">sales@poruta.com</a>
+                        </div>
+                        <div>
+                            <h4 class="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">Direct_Line</h4>
+                            <span class="text-surface-900 font-bold text-lg">+250 787 567 656</span>
+                        </div>
+                        <div>
+                            <h4 class="font-mono text-xs text-surface-500 uppercase tracking-widest mb-2">HQ_Node</h4>
+                            <span class="text-surface-900 font-bold text-base leading-snug block">Kigali, Rwanda<br>Serving the African Continent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-surface-950 pt-16 pb-8 border-t border-surface-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-surface-900 pb-10 mb-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-poruta-700 flex items-center justify-center">
+                        <i data-lucide="box" class="text-white w-4 h-4"></i>
+                    </div>
+                    <span class="font-bold text-xl text-white tracking-widest uppercase">Poruta</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <a href="#" class="text-surface-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors">About</a>
+                    <a href="#" class="text-surface-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors">Privacy</a>
+                    <a href="#" class="text-surface-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors">Terms</a>
+                </div>
+            </div>
+            <div class="text-center text-surface-600 font-mono text-xs uppercase">
+                © 2026 Poruta Infrastructure.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
