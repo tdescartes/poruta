@@ -29,14 +29,14 @@ const Capabilities = () => {
                 <div className="border-b border-surface-800 px-5 py-3 flex justify-between items-center bg-surface-900">
                   <span className="text-surface-400 font-bold tracking-widest uppercase">Batch_ID: #INV-4492</span>
                   <span className="flex items-center gap-2 text-surface-500 text-[10px]">
-                    <span className="w-2 h-2 bg-poruta-500 inline-block animate-blink" /> LIVE
+                    <span className="w-2 h-2 bg-poruta-500 inline-block animate-cursor-blink" /> LIVE
                   </span>
                 </div>
 
                 {/* Dashboard Body */}
                 <div className="relative flex-1 overflow-hidden bg-[#0a0f0d]">
                   {/* Phase 1: Input & Processing */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-center animate-bbPhase1">
+                  <div className="absolute inset-0 p-6 flex flex-col justify-center animate-bb-phase-1">
                     <div className="text-surface-500 mb-1 uppercase tracking-widest text-[10px]">Attachments</div>
                     <div className="text-surface-200 text-sm font-bold mb-8 flex items-center gap-3">
                       <FileText className="w-5 h-5 text-surface-400" />
@@ -46,17 +46,17 @@ const Capabilities = () => {
                     <div className="flex justify-between items-end mb-2">
                       <span className="text-surface-500 uppercase tracking-widest text-[10px]">System Status</span>
                       <div className="relative w-32 h-4 text-right font-bold text-sm">
-                        <span className="absolute right-0 top-0 text-surface-500 animate-bbStatus1">Unprocessed</span>
-                        <span className="absolute right-0 top-0 text-poruta-400 animate-bbStatus2">Processing...</span>
+                        <span className="absolute right-0 top-0 text-surface-500 animate-bb-status-1">Unprocessed</span>
+                        <span className="absolute right-0 top-0 text-poruta-400 animate-bb-status-2">Processing...</span>
                       </div>
                     </div>
                     <div className="w-full h-2 bg-surface-800 overflow-hidden">
-                      <div className="h-full bg-poruta-500 animate-bbProgress" />
+                      <div className="h-full bg-poruta-500 animate-bb-progress" />
                     </div>
                   </div>
 
                   {/* Phase 2: Output / Value */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-center bg-[#0a0f0d] animate-bbPhase2 opacity-0">
+                  <div className="absolute inset-0 p-6 flex flex-col justify-center bg-[#0a0f0d] animate-bb-phase-2 opacity-0">
                     <div className="border border-poruta-800 bg-poruta-900/20 p-4 mb-5 flex justify-between items-center">
                       <div>
                         <div className="text-poruta-400 font-bold text-sm tracking-wide mb-1">CLEARANCE READY</div>
@@ -94,7 +94,7 @@ const Capabilities = () => {
                 <div className="absolute left-6 top-6 bottom-6 w-[2px] bg-surface-800 z-0" />
 
                 {/* Animated Packet */}
-                <div className="absolute left-[19px] w-3 h-3 bg-surface-500 z-10 animate-handshakeFlow" style={{ top: 18 }} />
+                <div className="absolute left-[19px] w-3 h-3 bg-surface-500 z-10 animate-handshake-flow" style={{ top: 18 }} />
 
                 {/* Node 1: Logistics */}
                 <div className="absolute top-0 left-0 w-full flex items-center gap-4 z-20">
@@ -110,12 +110,12 @@ const Capabilities = () => {
 
                 {/* Node 2: Poruta Core */}
                 <div className="absolute top-[116px] left-0 w-full flex items-center gap-4 z-20">
-                  <div className="w-12 h-12 border bg-surface-950 flex items-center justify-center animate-coreFlash relative">
+                  <div className="w-12 h-12 border bg-surface-950 flex items-center justify-center animate-core-flash relative">
                     <div className="absolute -left-1 -top-1 w-2 h-2 border-t border-l border-poruta-500" />
                     <div className="absolute -right-1 -bottom-1 w-2 h-2 border-b border-r border-poruta-500" />
                     <Cpu className="w-5 h-5" />
                   </div>
-                  <div className="flex-1 border bg-surface-950/80 p-2.5 backdrop-blur-sm animate-coreFlash">
+                  <div className="flex-1 border bg-surface-950/80 p-2.5 backdrop-blur-sm animate-core-flash">
                     <span className="block mb-1 opacity-70">PORUTA_CORE</span>
                     <span className="font-bold">[VERIFY_ENGINE]</span>
                   </div>
