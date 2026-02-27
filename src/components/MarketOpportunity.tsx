@@ -1,70 +1,35 @@
-import { TrendingUp, Users, Globe, Rocket } from "lucide-react";
-import { Card } from "@/components/ui/card";
-
-const stats = [
-  {
-    icon: Users,
-    value: "1.7B",
-    label: "People in AfCFTA Market",
-    description: "The world's largest free trade area by member states",
-  },
-  {
-    icon: TrendingUp,
-    value: "$6.7T",
-    label: "Consumer Spending by 2030",
-    description: "Massive growth opportunity across the continent",
-  },
-  {
-    icon: Globe,
-    value: "54",
-    label: "African Countries",
-    description: "Complex regulations driving need for automation",
-  },
-  {
-    icon: Rocket,
-    value: "Live Platform",
-    label: "Traction & Roadmap",
-    description: "Developed and seeking pilot partnerships",
-  },
-];
-
 const MarketOpportunity = () => {
   return (
-    <section className="py-24 bg-gradient-hero text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
-            The Market Opportunity
-          </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            AfCFTA is unlocking unprecedented opportunities. Rising trade complexity and volume 
-            as Africa&apos;s economy grows creates the perfect conditions for Poruta.
+    <section id="scale" className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 lg:-mt-20">
+      <div className="bg-white border border-surface-200 shadow-2xl flex flex-col lg:flex-row">
+
+        {/* Branding / Context */}
+        <div className="p-8 lg:p-10 lg:w-1/3 bg-surface-50 border-b lg:border-b-0 lg:border-r border-surface-200 flex flex-col justify-center">
+          <h2 className="text-2xl font-extrabold text-surface-900 tracking-tighter mb-2 uppercase">Continental Scale</h2>
+          <p className="text-sm text-surface-600 leading-relaxed">
+            Enterprise infrastructure engineered to handle the complexity of the world&apos;s largest free trade area.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
-            <Card
-              key={index}
-              className="p-6 bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all animate-fade-in text-center"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-7 h-7 text-white" />
-              </div>
-              <p className="text-3xl font-extrabold mb-1">{stat.value}</p>
-              <p className="text-white/90 font-semibold mb-2">{stat.label}</p>
-              <p className="text-white/70 text-sm">{stat.description}</p>
-            </Card>
-          ))}
+        {/* Metrics */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:w-2/3 divide-y sm:divide-y-0 sm:divide-x divide-surface-200">
+          <div className="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+            <div className="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">1.7B</div>
+            <div className="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Population</div>
+            <div className="text-xs text-surface-500">AfCFTA demographic</div>
+          </div>
+          <div className="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+            <div className="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">$6.7T</div>
+            <div className="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Spend</div>
+            <div className="text-xs text-surface-500">Projected by 2030</div>
+          </div>
+          <div className="p-8 lg:p-10 flex flex-col justify-center hover:bg-surface-50 transition-colors">
+            <div className="text-4xl lg:text-5xl font-extrabold text-surface-900 tracking-tighter mb-2">54</div>
+            <div className="text-xs font-mono text-poruta-700 uppercase tracking-widest font-bold mb-1">Nations</div>
+            <div className="text-xs text-surface-500">Regulations unified</div>
+          </div>
         </div>
 
-        <div className="mt-12 text-center animate-fade-in">
-          <p className="text-white/80 max-w-3xl mx-auto">
-            With rising trade complexity and volume as Rwanda and Africa&apos;s economies grow, 
-            Poruta is positioned to become the essential infrastructure for cross-border trade automation.
-          </p>
-        </div>
       </div>
     </section>
   );
