@@ -50,7 +50,7 @@ const CompetitiveAdvantage = () => {
             Our Competitive Advantage
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See how Poruta's AI Control Tower compares to existing solutions
+            See how Poruta&apos;s AI Control Tower compares to existing solutions
           </p>
         </div>
 
@@ -63,7 +63,7 @@ const CompetitiveAdvantage = () => {
                   <TableHead className="font-bold text-foreground w-1/3">
                     <div className="flex items-center gap-2">
                       <X className="w-4 h-4 text-destructive" />
-                      Existing "Single Window" System
+                      Existing &ldquo;Single Window&rdquo; System
                     </div>
                   </TableHead>
                   <TableHead className="font-bold text-foreground w-1/3">
