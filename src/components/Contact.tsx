@@ -40,14 +40,14 @@ const Contact = () => {
 
     try {
       const formBody = new URLSearchParams();
-      formBody.append("entry.89711842", formData.name);
-      formBody.append("entry.432833327", formData.email);
-      if (formData.company) formBody.append("entry.666677065", formData.company);
-      if (formData.phone) formBody.append("entry.974077450", formData.phone);
-      if (formData.message) formBody.append("entry.65402589", formData.message);
+      formBody.append("entry.2139731301", formData.name);
+      formBody.append("entry.248402731", formData.email);
+      if (formData.company) formBody.append("entry.2032801250", formData.company);
+      if (formData.phone) formBody.append("entry.465060579", formData.phone);
+      if (formData.message) formBody.append("entry.1912247739", formData.message);
 
       await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSci4iYnLMagsWzDEsWcqaN5Pxp6vrXg4kBbAxuauauHrZqi7g/formResponse",
+        "https://docs.google.com/forms/d/e/1FAIpQLSeoqix_OL9Jg5FZBoz_12B2NzxygVGcjODEcMjxL3nF64l7lw/formResponse",
         {
           method: "POST",
           body: formBody,
