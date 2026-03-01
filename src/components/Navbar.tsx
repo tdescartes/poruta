@@ -20,19 +20,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = isHomePage
-    ? [
-        { name: "Scale", href: "#scale", type: "anchor" },
-        { name: "Platform", href: "#platform", type: "anchor" },
-        { name: "Capabilities", href: "#capabilities", type: "anchor" },
-        { name: "About", href: "#about", type: "anchor" },
-      ]
-    : [
-        { name: "Home", href: "/", type: "route" },
-        { name: "Features", href: "/features", type: "route" },
-        { name: "About", href: "/about", type: "route" },
-        { name: "Pricing", href: "/pricing", type: "route" },
-      ];
+  const navLinks = [
+    { name: "Scale", href: isHomePage ? "#scale" : "/#scale" },
+    { name: "Platform", href: isHomePage ? "#platform" : "/#platform" },
+    { name: "Capabilities", href: isHomePage ? "#capabilities" : "/#capabilities" },
+    { name: "About", href: isHomePage ? "#about" : "/#about" },
+  ];
 
   return (
     <nav className="fixed w-full bg-surface-50/95 backdrop-blur-md z-50 border-b border-surface-200 transition-all">
@@ -52,25 +45,15 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-10 text-xs font-bold text-surface-600 uppercase tracking-widest">
-            {navLinks.map((link) =>
-              link.type === "anchor" ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-surface-900 transition-colors"
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-surface-900 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="hover:text-surface-900 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
             <BookDemoModal
               trigger={
                 <a className="bg-surface-900 text-white px-6 py-3 hover:bg-poruta-700 transition-colors cursor-pointer">
@@ -97,27 +80,16 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-surface-50 border-t border-surface-200 animate-fade-in">
           <div className="px-4 pt-2 pb-4 space-y-1">
-            {navLinks.map((link) =>
-              link.type === "anchor" ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="block py-3 text-xs font-bold text-surface-600 uppercase tracking-widest hover:text-surface-900 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="block py-3 text-xs font-bold text-surface-600 uppercase tracking-widest hover:text-surface-900 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="block py-3 text-xs font-bold text-surface-600 uppercase tracking-widest hover:text-surface-900 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
             <div onClick={() => setIsMobileMenuOpen(false)}>
               <BookDemoModal
                 trigger={
