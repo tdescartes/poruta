@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       "Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.",
     type: "website",
     url: "https://poruta.com",
-    images: ["/og-image.jpg"],
+    // TODO: Add /og-image.jpg (1200x630px) to public/ for social share previews
   },
   twitter: {
     card: "summary_large_image",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Poruta: Intelligent Trade & Procurement Control Tower",
     description:
       "Frictionless cross-border trade. Protect margins, guarantee compliance, and clear shipments in hours, not weeks.",
-    images: ["/og-image.jpg"],
+    // TODO: Add /og-image.jpg (1200x630px) to public/ for social share previews
   },
 };
 
