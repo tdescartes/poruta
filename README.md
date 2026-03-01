@@ -1,73 +1,64 @@
-# Welcome to your Lovable project
+# Poruta
 
-## Project info
+**Intelligent Trade & Procurement Control Tower**
 
-**URL**: https://lovable.dev/projects/5a530054-f244-4ef6-a60c-002033860a22
+Poruta is an AI-powered procurement automation platform designed for African cross-border trade. It connects importers, customs agents, and government institutions through intelligent document processing, real-time compliance tracking, and multi-party data sharing.
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+- **AI Document Classification** — Automated HS code classification, tariff lookup, and customs documentation.
+- **Human-in-the-Loop** — AI-assisted workflows with human oversight for accuracy and compliance.
+- **Real-Time Dashboards** — Live tracking of shipments, clearance status, and demurrage risk.
+- **AfCFTA Ready** — Built to support the African Continental Free Trade Area.
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5a530054-f244-4ef6-a60c-002033860a22) and start prompting.
+- [Next.js](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Supabase](https://supabase.com/) (Backend)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+Prerequisites: [Node.js](https://nodejs.org/) v18+ and npm.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Clone the repository
+git clone <repo-url>
+cd poruta
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:3000`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Scripts
 
-**Use GitHub Codespaces**
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── app/          # Next.js App Router pages & layouts
+├── components/   # UI and feature components
+│   └── ui/       # shadcn/ui primitives
+├── hooks/        # Custom React hooks
+├── integrations/ # Third-party service clients
+└── lib/          # Shared utilities
+public/           # Static assets
+```
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5a530054-f244-4ef6-a60c-002033860a22) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Proprietary. All rights reserved.
