@@ -17,7 +17,6 @@ Poruta is an AI-powered procurement automation platform designed for African cro
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
-- [Supabase](https://supabase.com/) (Backend)
 
 ## Getting Started
 
