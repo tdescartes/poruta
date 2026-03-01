@@ -10,7 +10,7 @@ const CTAFooter = () => {
             <img
               src="/poruta-logo.png"
               alt="Poruta"
-              className="h-8 w-auto brightness-0 invert"
+              className="h-14 w-auto border border-white/30"
             />
           </div>
 
